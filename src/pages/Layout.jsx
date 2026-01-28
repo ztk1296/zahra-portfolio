@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
+import { Container } from "@mui/material";
 
 function Layout() {
   return (
     <div>
       <NavBar />
-      <div sx={{ p: 10 }}>
+      <Container maxWidth="xl">
         <Outlet />
-      </div>
+      </Container>
     </div>
   );
 }

@@ -19,7 +19,7 @@ function AboutMe() {
           </Typography>
           <Typography sx={{ pt: 1 }}>
             In 2021, I graduated from University of North Texas with a
-            Bachelor's of Science is Information Science with a focus in
+            Bachelor's of Science in Information Science with a focus in
             Knowledge Discovery and Data Science. My passion lies in creating
             efficient and scalable software solutions that solve real-world
             problems. I am excited to connect with like-minded professionals and
