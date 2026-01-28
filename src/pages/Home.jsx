@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import PageHeader from "../components/PageHeader/PageHeader";
-import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+
+//TODO: Update String values from JSX to const values
 
 function Home() {
   const PageHeaderTitle = "Zahra Khan - Full-Stack Software Engineer";
@@ -25,7 +27,7 @@ function Home() {
         <Box sx={{ width: "20%" }}>
           <CardMedia
             component="img"
-            // height="140"
+            height="140"
             image="https://as1.ftcdn.net/v2/jpg/01/81/47/00/1000_F_181470039_NOQrR8a71hdxYQ5t41SvLX4Z8Sfvqyz3.jpg"
             alt="ZProject Portfolio Redesign"
           />
