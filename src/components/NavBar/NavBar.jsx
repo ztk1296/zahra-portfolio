@@ -11,7 +11,6 @@ import {
   Toolbar,
   Button,
   Typography,
-  Icon,
   ListItemButton,
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
@@ -34,7 +33,7 @@ function NavBar() {
     setOpen(!open);
     console.log("Menu clicked");
   };
-    const handleMenuItemClick = (link) => {
+  const handleMenuItemClick = (link) => {
     setOpen(!open);
     navigateToHref(link);
     console.log("Menu Item clicked");
@@ -107,32 +106,30 @@ function NavBar() {
 
           {full && (
             <>
-            <Button
+              <Button
                 onClick={() => {
-                    handleMenuClick();
-                    console.log("Logo clicked");
-                }}>
-              <Typography
-                variant="h6"
-                sx={{ color: "#fefefe" }}
+                  handleMenuClick();
+                  console.log("Logo clicked");
+                }}
               >
-                ZProjects
-              </Typography>
+                <Typography variant="h6" sx={{ color: "#fefefe" }}>
+                  ZProjects
+                </Typography>
               </Button>
               {menuItems.map((data, index) => {
-                  return (
-                    <BasicButton
-                        key={index}
-                        color="inherit"
-                        label={data.title}
-                        onClick={() => {
-                            handleMenuItemClick(data.link);
-                            console.log("NavBarHome clicked");
-                        }}
-                    />
-                    );
-                    })}
-              </>
+                return (
+                  <BasicButton
+                    key={index}
+                    color="inherit"
+                    label={data.title}
+                    onClick={() => {
+                      handleMenuItemClick(data.link);
+                      console.log("NavBarHome clicked");
+                    }}
+                  />
+                );
+              })}
+            </>
           )}
         </Toolbar>
       </AppBar>

@@ -5,23 +5,23 @@ import ContactMe from "../pages/ContactMe";
 import Home from "../pages/Home";
 
 export const routers = createBrowserRouter([
-    {
-        path: "/",
-        element: <Layout />,
-        children: [
-            {
-                index: true,
-                path: "/home",
-                element: <Home />
-            },
-            {
-                path: "/about-me",
-                element: <AboutMe />
-            },
-            {
-                path: "/contact-me",
-                element: <ContactMe />
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/about-me",
+        element: <AboutMe />,
+      },
+      {
+        path: "/contact-me",
+        element: <ContactMe />,
+      },
+    ],
+  },
+]);
