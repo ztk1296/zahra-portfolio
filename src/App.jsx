@@ -3,11 +3,14 @@ import "./App.css";
 import { routers } from "./routes/AppRoutes";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./styles/globalTheme";
+import AppTheme from "./styles/appTheme";
 
-export default function App() {
+export default function App(props) {
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
+    <AppTheme {...props}>
       <RouterProvider router={routers} />
-    </ThemeProvider>
+    </AppTheme>
+    // </ThemeProvider>
   );
 }
