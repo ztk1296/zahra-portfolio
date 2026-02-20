@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/zahra-portfolio/static/css/main.c3ca0a2b.css",
+    "main.js": "/zahra-portfolio/static/js/main.7be1164a.js",
+    "static/js/453.6f3f0029.chunk.js": "/zahra-portfolio/static/js/453.6f3f0029.chunk.js",
+    "index.html": "/zahra-portfolio/index.html",
+    "main.c3ca0a2b.css.map": "/zahra-portfolio/static/css/main.c3ca0a2b.css.map",
+    "main.7be1164a.js.map": "/zahra-portfolio/static/js/main.7be1164a.js.map",
+    "453.6f3f0029.chunk.js.map": "/zahra-portfolio/static/js/453.6f3f0029.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3ca0a2b.css",
+    "static/js/main.7be1164a.js"
+  ]
+}
