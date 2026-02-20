@@ -24,4 +24,8 @@ export const routers = createBrowserRouter([
       },
     ],
   },
-]);
+],
+  {
+    basename: "/zahra-portfolio",
+  }
+);
