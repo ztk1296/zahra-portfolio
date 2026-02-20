@@ -1,32 +1,44 @@
-import React, { useState } from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import DehazeIcon from "@mui/icons-material/Dehaze";
-
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Collapse,
-  AppBar,
-  Toolbar,
-  Button,
-  Typography,
-  ListItemButton,
-} from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import { useStyles } from "../../assets/styles/NavBarStyle";
-import BasicButton from "../Button/BasicButton";
+import * as React from "react";
+import { alpha, styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import MenuItem from "@mui/material/MenuItem";
+import Drawer from "@mui/material/Drawer";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import AnchorIcon from "@mui/icons-material/Anchor";
+import ColorModeIconDropdown from "../../styles/colorModeIconDropdown";
 import { useNavigate } from "react-router-dom";
+import BasicButton from "../Button/BasicButton";
 
-// Exporting Default Navbar to the App.js File
-function NavBar() {
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexShrink: 0,
+  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
+  backdropFilter: "blur(24px)",
+  border: "1px solid",
+  borderColor: (theme.vars || theme).palette.divider,
+  backgroundColor: theme.vars
+    ? `rgba(${theme.vars.palette.background.defaultChannel} / 0.4)`
+    : alpha(theme.palette.background.default, 0.4),
+  boxShadow: (theme.vars || theme).shadows[1],
+  padding: "8px 12px",
+}));
+
+export default function NavBar() {
   const navigate = useNavigate();
-  const classes = useStyles();
-  const small = useMediaQuery("(max-width:600px)");
-  const full = useMediaQuery("(min-width:600px)");
+  const [open, setOpen] = React.useState(false);
 
-  const [open, setOpen] = useState(false);
+  const navigateToHref = (link) => {
+    navigate(link);
+  };
 
   const handleMenuClick = () => {
     navigateToHref(menuItems[0].link);
@@ -53,88 +65,100 @@ function NavBar() {
       link: "/contact-me",
     },
   ];
-
-  const navigateToHref = (link) => {
-    navigate(link);
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar color="secondary">
-        <Toolbar variant="dense">
-          {small && (
-            <>
-              <List>
-                <ListItem button>
-                  <Button onClick={handleMenuClick}>
-                    <DehazeIcon sx={{ color: "#fefefe" }} />
-                    {open ? (
-                      <ExpandLess sx={{ color: "#fefefe" }} />
-                    ) : (
-                      <ExpandMore sx={{ color: "#fefefe" }} />
-                    )}
-                  </Button>
-                  <Typography
-                    variant="h6"
-                    color="inherit"
-                    onClick={() => {
-                      console.log("logo clicked");
-                      setOpen(false);
-                    }}
-                  >
-                    ZProjects
-                  </Typography>
-                </ListItem>
-                {menuItems.map((data, index) => {
-                  return (
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        <ListItemButton
-                          key={index}
-                          button
-                          onClick={() => handleMenuItemClick(data.link)}
-                        >
-                          <ListItemText primary={data.title} />
-                        </ListItemButton>
-                      </List>
-                    </Collapse>
-                  );
-                })}
-              </List>
-            </>
-          )}
-
-          {full && (
-            <>
-              <Button
-                onClick={() => {
-                  handleMenuClick();
-                  console.log("Logo clicked");
-                }}
-              >
-                <Typography variant="h6" sx={{ color: "#fefefe" }}>
-                  ZProjects
-                </Typography>
-              </Button>
+    <AppBar
+      position="fixed"
+      enableColorOnDark
+      sx={{
+        boxShadow: 0,
+        bgcolor: "transparent",
+        backgroundImage: "none",
+        mt: "calc(var(--template-frame-height, 0px) + 28px)",
+      }}
+    >
+      <Container maxWidth="lg">
+        <StyledToolbar variant="dense" disableGutters>
+          <Box
+            sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
+          >
+            <AnchorIcon sx={{ color: "#000000" }} />
+            <Box sx={{ pl: 4, display: { xs: "none", md: "flex" } }}>
               {menuItems.map((data, index) => {
                 return (
                   <BasicButton
+                    sx={{ px: 3 }}
                     key={index}
-                    color="inherit"
+                    variant="text"
+                    color="info"
+                    size="small"
                     label={data.title}
                     onClick={() => {
                       handleMenuItemClick(data.link);
-                      console.log("NavBarHome clicked");
+                      console.log("NavBarItem clicked");
                     }}
                   />
                 );
               })}
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 1,
+              alignItems: "center",
+            }}
+          >
+            <ColorModeIconDropdown />
+          </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" }, gap: 1 }}>
+            <ColorModeIconDropdown size="medium" />
+            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="top"
+              open={open}
+              onClose={toggleDrawer(false)}
+              slotProps={{
+                sx: {
+                  top: "var(--template-frame-height, 0px)",
+                },
+              }}
+            >
+              <Box sx={{ p: 2, backgroundColor: "background.default" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <IconButton onClick={toggleDrawer(false)}>
+                    <CloseRoundedIcon />
+                  </IconButton>
+                </Box>
+                {menuItems.map((data, index) => {
+                  return (
+                    <MenuItem
+                      key={index}
+                      color="inherit"
+                      label={data.title}
+                      onClick={() => {
+                        handleMenuItemClick(data.link);
+                        console.log("NavBarItem clicked");
+                      }}
+                    />
+                  );
+                })}
+                <Divider sx={{ my: 3 }} />
+              </Box>
+            </Drawer>
+          </Box>
+        </StyledToolbar>
+      </Container>
+    </AppBar>
   );
 }
-
-export default NavBar;
