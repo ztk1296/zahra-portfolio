@@ -2,6 +2,7 @@
   "name": "zahra-portfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ztk1296.github.io/zahra-portfolio",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -12,6 +13,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.8.1",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
@@ -29,7 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,,ts,jsx,tsx,json,css,md}\"",
-    "format:check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,json,css,md}\""
+    "format:check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,json,css,md}\"",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [

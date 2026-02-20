@@ -142,7 +142,7 @@ export default function MainContent() {
             </Box>
             {tabContent.map((selectedTab) => 
               <TabPanel value={selectedTab.id - 1} key={selectedTab.id}>
-                <SectionTab key={selectedTab.id} cards={selectedTab.tabCards}/>
+                <SectionTab key={selectedTab.id} cardData={selectedTab.tabCards}/>
               </TabPanel>
           )}
           </TabContext>
